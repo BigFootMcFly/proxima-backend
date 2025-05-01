@@ -1,0 +1,433 @@
+name: 'Discord User Managment'
+description: |-
+
+  APIs to manage [DiscordUser](#discorduser) records.
+
+  These endpoints can be used to Query/Update/Delete [DiscordUser](#discorduser) records.
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/discord-users
+    metadata:
+      groupName: 'Discord User Managment'
+      groupDescription: |-
+
+        APIs to manage [DiscordUser](#discorduser) records.
+
+        These endpoints can be used to Query/Update/Delete [DiscordUser](#discorduser) records.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List DiscorUsers.'
+      description: 'Paginated list of [DiscordUser](#discorduser) records.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      page_size:
+        name: page_size
+        description: 'Items per page. Defaults to 100.'
+        required: false
+        example: 25
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      page:
+        name: page
+        description: 'Page to query. Defaults to 1.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      page_size: 25
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":1,"snowflake":"481398158916845568","user_name":"bigfootmcfly","global_name":"BigFoot McFly","locale":"hu_HU","timezone":"Europe/Budapest"},{"id":6,"snowflake":"860046989130727450","user_name":"Teszt Elek","global_name":"holnap_is_teszt_elek","locale":"hu","timezone":"Europe/Budapest"},{"id":12,"snowflake":"112233445566778899","user_name":"Igaz Álmos","global_name":"almos#1244","locale":null,"timezone":null}],"meta":{"current_page":1,"from":1,"last_page":1,"per_page":10,"to":3,"total":3}}'
+        headers: []
+        description: success
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer DWg0pwbKhoC45vSEKiY7o2fqyuawN4F1yCC6bbiYee795197'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/discord-users
+    metadata:
+      groupName: 'Discord User Managment'
+      groupDescription: |-
+
+        APIs to manage [DiscordUser](#discorduser) records.
+
+        These endpoints can be used to Query/Update/Delete [DiscordUser](#discorduser) records.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a new DiscordUser record.'
+      description: 'Creates a new [DiscordUser](#discorduser) record with the provided parameters.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      snowflake:
+        name: snowflake
+        description: 'A valid [snowflake](#snowflake).'
+        required: true
+        example: '481398158916845568'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      user_name:
+        name: user_name
+        description: 'The user_name registered in Discord.'
+        required: false
+        example: bigfootmcfly
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      global_name:
+        name: global_name
+        description: 'The global_name registered in Discord.'
+        required: false
+        example: 'BigFoot McFly'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      avatar:
+        name: avatar
+        description: 'The avatar url registered in Discord.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      locale:
+        name: locale
+        description: 'A valid [locale](#locale).'
+        required: false
+        example: hu_HU
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      timezone:
+        name: timezone
+        description: 'A valid [time zone](#timezone).'
+        required: false
+        example: Europe/Budapest
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      snowflake: '481398158916845568'
+      user_name: bigfootmcfly
+      global_name: 'BigFoot McFly'
+      locale: hu_HU
+      timezone: Europe/Budapest
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":42,"snowflake":"481398158916845568","user_name":"bigfootmcfly","global_name":"BigFoot McFly","locale":"hu_HU","timezone":"Europe\/Budapest"}}'
+        headers: []
+        description: success
+        custom: []
+      -
+        status: 422
+        content: '{"errors":{"snowflake":["The snowflake has already been taken."]}}'
+        headers: []
+        description: 'Unprocessable Content'
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer DWg0pwbKhoC45vSEKiY7o2fqyuawN4F1yCC6bbiYee795197'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/discord-users/{id}'
+    metadata:
+      groupName: 'Discord User Managment'
+      groupDescription: |-
+
+        APIs to manage [DiscordUser](#discorduser) records.
+
+        These endpoints can be used to Query/Update/Delete [DiscordUser](#discorduser) records.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get the specified DiscordUser record.'
+      description: 'Returns the specified [DiscordUser](#discorduser) record.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: '[DiscordUser](#discorduser) ID.'
+        required: true
+        example: 42
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 42
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":42,"snowflake":"481398158916845568","user_name":"bigfootmcfly","global_name":"BigFoot McFly","locale":"hu_HU","timezone":"Europe\/Budapest"}}'
+        headers: []
+        description: success
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer DWg0pwbKhoC45vSEKiY7o2fqyuawN4F1yCC6bbiYee795197'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/discord-users/{id}'
+    metadata:
+      groupName: 'Discord User Managment'
+      groupDescription: |-
+
+        APIs to manage [DiscordUser](#discorduser) records.
+
+        These endpoints can be used to Query/Update/Delete [DiscordUser](#discorduser) records.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update the specified DiscordUser record.'
+      description: 'Updates the specified [DiscordUser](#discorduser) with the supplied values.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: '[DiscordUser](#discorduser) ID.'
+        required: true
+        example: 42
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 42
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      snowflake:
+        name: snowflake
+        description: 'The snowflake of the [DiscordUser](#discorduser) to update.'
+        required: true
+        example: '481398158916845568'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      user_name:
+        name: user_name
+        description: 'The user_name registered in Discord.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      global_name:
+        name: global_name
+        description: 'The global_name registered in Discord.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      avatar:
+        name: avatar
+        description: 'The avatar url registered in Discord.'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      locale:
+        name: locale
+        description: 'A valid locale. <a href="https://github.com/Nerdtrix/language-list/blob/main/language-list-json.json" target="_blank">Locale list (json)</a>'
+        required: false
+        example: null
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      timezone:
+        name: timezone
+        description: 'A valid [time zone](#timezone).'
+        required: false
+        example: Europe/London
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      snowflake: '481398158916845568'
+      timezone: Europe/London
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":{"id":42,"snowflake":"481398158916845568","user_name":"bigfootmcfly","global_name":"BigFoot McFly","locale":"hu_HU","timezone":"Europe\/London"}}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: '{"errors":{"snowflake":["Invalid snowflake"]}}'
+        headers: []
+        description: 'Unprocessable Content'
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer DWg0pwbKhoC45vSEKiY7o2fqyuawN4F1yCC6bbiYee795197'
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/discord-users/{id}'
+    metadata:
+      groupName: 'Discord User Managment'
+      groupDescription: |-
+
+        APIs to manage [DiscordUser](#discorduser) records.
+
+        These endpoints can be used to Query/Update/Delete [DiscordUser](#discorduser) records.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Remove the specified DiscordUser record.'
+      description: 'Removes the specified [DiscordUser](#discorduser) record **with** all the [Remainder](#remainder) records belonging to it.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: '[DiscordUser](#discorduser) ID.'
+        required: true
+        example: 42
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 42
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      snowflake:
+        name: snowflake
+        description: 'The snowflake of the [DiscordUser](#discorduser) to delete.'
+        required: true
+        example: '481398158916845568'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      snowflake: '481398158916845568'
+    fileParameters: []
+    responses:
+      -
+        status: 204
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer DWg0pwbKhoC45vSEKiY7o2fqyuawN4F1yCC6bbiYee795197'
+    controller: null
+    method: null
+    route: null
+    custom: []

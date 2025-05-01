@@ -1,0 +1,3251 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API documentation</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+                    body .content .php-example code { display: none; }
+                    body .content .python-example code { display: none; }
+            </style>
+
+    <script>
+        var tryItOutBaseUrl = "http://localhost:8000";
+        var useCsrf = Boolean();
+        var csrfUrl = "/sanctum/csrf-cookie";
+    </script>
+    <script src="../docs/js/tryitout-4.40.0.js"></script>
+
+    <script src="../docs/js/theme-default-4.40.0.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;,&quot;php&quot;,&quot;python&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image"/>
+    </span>
+</a>
+<div class="tocify-wrapper">
+            <img src="../images/logo.svg" alt="logo" class="logo" style="padding-top: 10px;" width="100%"/>
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                            <button type="button" class="lang-button" data-language-name="php">php</button>
+                                            <button type="button" class="lang-button" data-language-name="python">python</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                    <ul id="tocify-header-introduction" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="introduction">
+                    <a href="#introduction">Introduction</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-authenticating-requests" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authenticating-requests">
+                    <a href="#authenticating-requests">Authenticating requests</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-discord-user-by-snowflake-managment" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="discord-user-by-snowflake-managment">
+                    <a href="#discord-user-by-snowflake-managment">Discord User By snowflake Managment</a>
+                </li>
+                                    <ul id="tocify-subheader-discord-user-by-snowflake-managment" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="discord-user-by-snowflake-managment-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-">
+                                <a href="#discord-user-by-snowflake-managment-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-">Get the DiscordUser identified by the specified snowflake.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="discord-user-by-snowflake-managment-PUTapi-v1-discord-user-by-snowflake--snowflake-">
+                                <a href="#discord-user-by-snowflake-managment-PUTapi-v1-discord-user-by-snowflake--snowflake-">Get _OR_ Update/Create the DiscordUser identified by the specified snowflake.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-discord-user-managment" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="discord-user-managment">
+                    <a href="#discord-user-managment">Discord User Managment</a>
+                </li>
+                                    <ul id="tocify-subheader-discord-user-managment" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="discord-user-managment-GETapi-v1-discord-users">
+                                <a href="#discord-user-managment-GETapi-v1-discord-users">List DiscorUsers.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="discord-user-managment-POSTapi-v1-discord-users">
+                                <a href="#discord-user-managment-POSTapi-v1-discord-users">Create a new DiscordUser record.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="discord-user-managment-GETapi-v1-discord-users--id-">
+                                <a href="#discord-user-managment-GETapi-v1-discord-users--id-">Get the specified DiscordUser record.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="discord-user-managment-PUTapi-v1-discord-users--id-">
+                                <a href="#discord-user-managment-PUTapi-v1-discord-users--id-">Update the specified DiscordUser record.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="discord-user-managment-DELETEapi-v1-discord-users--id-">
+                                <a href="#discord-user-managment-DELETEapi-v1-discord-users--id-">Remove the specified DiscordUser record.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-remainder-managment" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="remainder-managment">
+                    <a href="#remainder-managment">Remainder Managment</a>
+                </li>
+                                    <ul id="tocify-subheader-remainder-managment" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="remainder-managment-GETapi-v1-discord-users--discord_user_id--remainders">
+                                <a href="#remainder-managment-GETapi-v1-discord-users--discord_user_id--remainders">List of Remainder records.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="remainder-managment-POSTapi-v1-discord-users--discord_user_id--remainders">
+                                <a href="#remainder-managment-POSTapi-v1-discord-users--discord_user_id--remainders">Create a new Remainder record.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="remainder-managment-PUTapi-v1-discord-users--discord_user_id--remainders--id-">
+                                <a href="#remainder-managment-PUTapi-v1-discord-users--discord_user_id--remainders--id-">Update the specified Remainder record.</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="remainder-managment-DELETEapi-v1-discord-users--discord_user_id--remainders--id-">
+                                <a href="#remainder-managment-DELETEapi-v1-discord-users--discord_user_id--remainders--id-">Remove the specified Remainder record.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-remainder-by-dueat-managment" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="remainder-by-dueat-managment">
+                    <a href="#remainder-by-dueat-managment">Remainder by DueAt Managment</a>
+                </li>
+                                    <ul id="tocify-subheader-remainder-by-dueat-managment" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="remainder-by-dueat-managment-GETapi-v1-remainder-by-due-at--due_at-">
+                                <a href="#remainder-by-dueat-managment-GETapi-v1-remainder-by-due-at--due_at-">Returns all the "actual" reaminders for the given second.</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-classes" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="classes">
+                    <a href="#classes">Classes</a>
+                </li>
+                                    <ul id="tocify-subheader-classes" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="discorduser">
+                                <a href="#discorduser">DiscordUser</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="remainder">
+                                <a href="#remainder">Remainder</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-types" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="types">
+                    <a href="#types">Types</a>
+                </li>
+                                    <ul id="tocify-subheader-types" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="timestamp">
+                                <a href="#timestamp">Timestamp</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="snowflake">
+                                <a href="#snowflake">Snowflake</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="locale">
+                                <a href="#locale">Locale</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="timezone">
+                                <a href="#timezone">Timezone</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="remainderstatus">
+                                <a href="#remainderstatus">RemainderStatus</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-error-responses" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="error-responses">
+                    <a href="#error-responses">Error responses</a>
+                </li>
+                                    <ul id="tocify-subheader-error-responses" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="unauthorized-401">
+                                <a href="#unauthorized-401">Unauthorized (401)</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="not-found-404">
+                                <a href="#not-found-404">Not Found (404)</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="unprocessable-content-422">
+                                <a href="#unprocessable-content-422">Unprocessable Content (422)</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="internal-server-error-500">
+                                <a href="#internal-server-error-500">Internal Server Error (500)</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+            </div>
+
+    <ul class="toc-footer" id="toc-footer">
+                    <li style="padding-bottom: 5px;"><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li style="padding-bottom: 5px;"><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+    </ul>
+
+    <ul class="toc-footer" id="last-updated">
+        <li>Last updated: March 24, 2025</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>Documentation for the Backend API.</p>
+<aside>
+    <strong>Base URL</strong>: <code>localhost:9000</code>
+</aside>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>You can manage your tokens at the <strong><code>profile</code></strong> page in the <strong><code>API Tokens</code></strong> section.</p>
+
+        <h1 id="discord-user-by-snowflake-managment">Discord User By snowflake Managment</h1>
+
+    <p>APIs to manage DiscordUser records.</p>
+<p>These endpoints can be used to identify/create DiscordUser records identified by the <a href="#snowflake">snowflake</a> that already exists in the discord app.</p>
+
+                                <h2 id="discord-user-by-snowflake-managment-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-">Get the DiscordUser identified by the specified snowflake.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Returns the <a href="#discorduser">DiscordUser</a> record for the specified <a href="#snowflake">snowflake</a>, given in the url <strong>discord_user_snowflake</strong> parameter.</p>
+<p>If it cannot be found, a <a href="#not-found-404"><strong>404, Not Found</strong></a> error is returned.</p>
+
+<span id="example-requests-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "localhost:9000/api/v1/discord-user-by-snowflake/481398158916845568" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "localhost:9000/api/v1/discord-user-by-snowflake/481398158916845568"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'localhost:9000/api/v1/discord-user-by-snowflake/481398158916845568';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'localhost:9000/api/v1/discord-user-by-snowflake/481398158916845568'
+headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 42,
+        &quot;snowflake&quot;: &quot;481398158916845568&quot;,
+        &quot;user_name&quot;: &quot;bigfootmcfly&quot;,
+        &quot;global_name&quot;: &quot;BigFoot McFly&quot;,
+        &quot;locale&quot;: &quot;hu_HU&quot;,
+        &quot;timezone&quot;: &quot;Europe/Budapest&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Not Found.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-" data-method="GET"
+      data-path="api/v1/discord-user-by-snowflake/{discord_user_snowflake}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-"
+                    onclick="tryItOut('GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-"
+                    onclick="cancelTryOut('GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/discord-user-by-snowflake/{discord_user_snowflake}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>discord_user_snowflake</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="discord_user_snowflake"                data-endpoint="GETapi-v1-discord-user-by-snowflake--discord_user_snowflake-"
+               value="481398158916845568"
+               data-component="url">
+    <br>
+<p>A valid <a href="#snowflake">snowflake</a>. Example: <code>481398158916845568</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="discord-user-by-snowflake-managment-PUTapi-v1-discord-user-by-snowflake--snowflake-">Get _OR_ Update/Create the DiscordUser identified by the specified snowflake.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>If the record specified by the url <strong>discord_user_snowflake</strong> parameter exists, it will be updated with the data provided in the body of the request.</p>
+<p>If it does not exists, it will be created using the given data.</p>
+<p>Returns the <strong>updated/created</strong> <a href="#discorduser">DiscordUser</a> record.</p>
+<p>If anything goes wrong, a <a href="#unprocessable-content-422"><strong>422, Unprocessable Content</strong></a> error with more details will be returned.</p>
+
+<span id="example-requests-PUTapi-v1-discord-user-by-snowflake--snowflake-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "localhost:9000/api/v1/discord-user-by-snowflake/481398158916845568" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"snowflake\": \"481398158916845568\",
+    \"user_name\": \"bigfootmcfly\",
+    \"global_name\": \"BigFoot McFly\",
+    \"locale\": \"en_GB\",
+    \"timezone\": \"Europe\\/London\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "localhost:9000/api/v1/discord-user-by-snowflake/481398158916845568"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "snowflake": "481398158916845568",
+    "user_name": "bigfootmcfly",
+    "global_name": "BigFoot McFly",
+    "locale": "en_GB",
+    "timezone": "Europe\/London"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'localhost:9000/api/v1/discord-user-by-snowflake/481398158916845568';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'snowflake' =&gt; '481398158916845568',
+            'user_name' =&gt; 'bigfootmcfly',
+            'global_name' =&gt; 'BigFoot McFly',
+            'locale' =&gt; 'en_GB',
+            'timezone' =&gt; 'Europe/London',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'localhost:9000/api/v1/discord-user-by-snowflake/481398158916845568'
+payload = {
+    "snowflake": "481398158916845568",
+    "user_name": "bigfootmcfly",
+    "global_name": "BigFoot McFly",
+    "locale": "en_GB",
+    "timezone": "Europe\/London"
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-discord-user-by-snowflake--snowflake-">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 42,
+        &quot;snowflake&quot;: &quot;481398158916845568&quot;,
+        &quot;user_name&quot;: &quot;bigfootmcfly&quot;,
+        &quot;global_name&quot;: &quot;BigFoot McFly&quot;,
+        &quot;locale&quot;: &quot;en_GB&quot;,
+        &quot;timezone&quot;: &quot;Europe/London&quot;
+    },
+    &quot;changes&quot;: {
+        &quot;locale&quot;: {
+            &quot;old&quot;: &quot;hu_HU&quot;,
+            &quot;new&quot;: &quot;en_GB&quot;
+        },
+        &quot;timezone&quot;: {
+            &quot;old&quot;: &quot;Europe/Budapest&quot;,
+            &quot;new&quot;: &quot;Europe/London&quot;
+        }
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Unprocessable Content):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;errors&quot;: {
+        &quot;snowflake&quot;: [
+            &quot;The snowflake field is required.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-v1-discord-user-by-snowflake--snowflake-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-discord-user-by-snowflake--snowflake-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-discord-user-by-snowflake--snowflake-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-discord-user-by-snowflake--snowflake-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-discord-user-by-snowflake--snowflake-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-v1-discord-user-by-snowflake--snowflake-" data-method="PUT"
+      data-path="api/v1/discord-user-by-snowflake/{snowflake}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-discord-user-by-snowflake--snowflake-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-discord-user-by-snowflake--snowflake-"
+                    onclick="tryItOut('PUTapi-v1-discord-user-by-snowflake--snowflake-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-discord-user-by-snowflake--snowflake-"
+                    onclick="cancelTryOut('PUTapi-v1-discord-user-by-snowflake--snowflake-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-discord-user-by-snowflake--snowflake-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/discord-user-by-snowflake/{snowflake}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v1-discord-user-by-snowflake--snowflake-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-v1-discord-user-by-snowflake--snowflake-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-v1-discord-user-by-snowflake--snowflake-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>snowflake</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="snowflake"                data-endpoint="PUTapi-v1-discord-user-by-snowflake--snowflake-"
+               value="481398158916845568"
+               data-component="url">
+    <br>
+<p>A valid <a href="#snowflake">snowflake</a>. Example: <code>481398158916845568</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>snowflake</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="snowflake"                data-endpoint="PUTapi-v1-discord-user-by-snowflake--snowflake-"
+               value="481398158916845568"
+               data-component="body">
+    <br>
+<p>A valid <a href="#snowflake">snowflake</a>. Example: <code>481398158916845568</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>user_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="user_name"                data-endpoint="PUTapi-v1-discord-user-by-snowflake--snowflake-"
+               value="bigfootmcfly"
+               data-component="body">
+    <br>
+<p>The user_name registered in Discord. Example: <code>bigfootmcfly</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>global_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="global_name"                data-endpoint="PUTapi-v1-discord-user-by-snowflake--snowflake-"
+               value="BigFoot McFly"
+               data-component="body">
+    <br>
+<p>The global_name registered in Discord. Example: <code>BigFoot McFly</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>avatar</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="avatar"                data-endpoint="PUTapi-v1-discord-user-by-snowflake--snowflake-"
+               value=""
+               data-component="body">
+    <br>
+<p>The avatar url registered in Discord.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>locale</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="locale"                data-endpoint="PUTapi-v1-discord-user-by-snowflake--snowflake-"
+               value="en_GB"
+               data-component="body">
+    <br>
+<p>A valid <a href="#locale">locale</a>. Example: <code>en_GB</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>timezone</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="timezone"                data-endpoint="PUTapi-v1-discord-user-by-snowflake--snowflake-"
+               value="Europe/London"
+               data-component="body">
+    <br>
+<p>A valid <a href="#timezone">time zone</a>. Example: <code>Europe/London</code></p>
+        </div>
+        </form>
+
+                <h1 id="discord-user-managment">Discord User Managment</h1>
+
+    <p>APIs to manage <a href="#discorduser">DiscordUser</a> records.</p>
+<p>These endpoints can be used to Query/Update/Delete <a href="#discorduser">DiscordUser</a> records.</p>
+
+                                <h2 id="discord-user-managment-GETapi-v1-discord-users">List DiscorUsers.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Paginated list of <a href="#discorduser">DiscordUser</a> records.</p>
+
+<span id="example-requests-GETapi-v1-discord-users">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "localhost:9000/api/v1/discord-users?page_size=25&amp;page=1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "localhost:9000/api/v1/discord-users"
+);
+
+const params = {
+    "page_size": "25",
+    "page": "1",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'localhost:9000/api/v1/discord-users';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'page_size' =&gt; '25',
+            'page' =&gt; '1',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'localhost:9000/api/v1/discord-users'
+params = {
+  'page_size': '25',
+  'page': '1',
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers, params=params)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-discord-users">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;snowflake&quot;: &quot;481398158916845568&quot;,
+            &quot;user_name&quot;: &quot;bigfootmcfly&quot;,
+            &quot;global_name&quot;: &quot;BigFoot McFly&quot;,
+            &quot;locale&quot;: &quot;hu_HU&quot;,
+            &quot;timezone&quot;: &quot;Europe/Budapest&quot;
+        },
+        {
+            &quot;id&quot;: 6,
+            &quot;snowflake&quot;: &quot;860046989130727450&quot;,
+            &quot;user_name&quot;: &quot;Teszt Elek&quot;,
+            &quot;global_name&quot;: &quot;holnap_is_teszt_elek&quot;,
+            &quot;locale&quot;: &quot;hu&quot;,
+            &quot;timezone&quot;: &quot;Europe/Budapest&quot;
+        },
+        {
+            &quot;id&quot;: 12,
+            &quot;snowflake&quot;: &quot;112233445566778899&quot;,
+            &quot;user_name&quot;: &quot;Igaz &Aacute;lmos&quot;,
+            &quot;global_name&quot;: &quot;almos#1244&quot;,
+            &quot;locale&quot;: null,
+            &quot;timezone&quot;: null
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;per_page&quot;: 10,
+        &quot;to&quot;: 3,
+        &quot;total&quot;: 3
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-discord-users" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-discord-users"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-discord-users"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-discord-users" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-discord-users">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-discord-users" data-method="GET"
+      data-path="api/v1/discord-users"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-discord-users', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-discord-users"
+                    onclick="tryItOut('GETapi-v1-discord-users');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-discord-users"
+                    onclick="cancelTryOut('GETapi-v1-discord-users');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-discord-users"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/discord-users</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-discord-users"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-discord-users"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-discord-users"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>page_size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="page_size"                data-endpoint="GETapi-v1-discord-users"
+               value="25"
+               data-component="query">
+    <br>
+<p>Items per page. Defaults to 100. Example: <code>25</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="page"                data-endpoint="GETapi-v1-discord-users"
+               value="1"
+               data-component="query">
+    <br>
+<p>Page to query. Defaults to 1. Example: <code>1</code></p>
+            </div>
+                </form>
+
+                    <h2 id="discord-user-managment-POSTapi-v1-discord-users">Create a new DiscordUser record.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Creates a new <a href="#discorduser">DiscordUser</a> record with the provided parameters.</p>
+
+<span id="example-requests-POSTapi-v1-discord-users">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "localhost:9000/api/v1/discord-users" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"snowflake\": \"481398158916845568\",
+    \"user_name\": \"bigfootmcfly\",
+    \"global_name\": \"BigFoot McFly\",
+    \"locale\": \"hu_HU\",
+    \"timezone\": \"Europe\\/Budapest\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "localhost:9000/api/v1/discord-users"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "snowflake": "481398158916845568",
+    "user_name": "bigfootmcfly",
+    "global_name": "BigFoot McFly",
+    "locale": "hu_HU",
+    "timezone": "Europe\/Budapest"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'localhost:9000/api/v1/discord-users';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'snowflake' =&gt; '481398158916845568',
+            'user_name' =&gt; 'bigfootmcfly',
+            'global_name' =&gt; 'BigFoot McFly',
+            'locale' =&gt; 'hu_HU',
+            'timezone' =&gt; 'Europe/Budapest',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'localhost:9000/api/v1/discord-users'
+payload = {
+    "snowflake": "481398158916845568",
+    "user_name": "bigfootmcfly",
+    "global_name": "BigFoot McFly",
+    "locale": "hu_HU",
+    "timezone": "Europe\/Budapest"
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-discord-users">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 42,
+        &quot;snowflake&quot;: &quot;481398158916845568&quot;,
+        &quot;user_name&quot;: &quot;bigfootmcfly&quot;,
+        &quot;global_name&quot;: &quot;BigFoot McFly&quot;,
+        &quot;locale&quot;: &quot;hu_HU&quot;,
+        &quot;timezone&quot;: &quot;Europe/Budapest&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Unprocessable Content):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;errors&quot;: {
+        &quot;snowflake&quot;: [
+            &quot;The snowflake has already been taken.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-discord-users" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-discord-users"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-discord-users"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-discord-users" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-discord-users">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-discord-users" data-method="POST"
+      data-path="api/v1/discord-users"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-discord-users', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-discord-users"
+                    onclick="tryItOut('POSTapi-v1-discord-users');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-discord-users"
+                    onclick="cancelTryOut('POSTapi-v1-discord-users');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-discord-users"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/discord-users</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-discord-users"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-discord-users"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-discord-users"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>snowflake</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="snowflake"                data-endpoint="POSTapi-v1-discord-users"
+               value="481398158916845568"
+               data-component="body">
+    <br>
+<p>A valid <a href="#snowflake">snowflake</a>. Example: <code>481398158916845568</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>user_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="user_name"                data-endpoint="POSTapi-v1-discord-users"
+               value="bigfootmcfly"
+               data-component="body">
+    <br>
+<p>The user_name registered in Discord. Example: <code>bigfootmcfly</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>global_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="global_name"                data-endpoint="POSTapi-v1-discord-users"
+               value="BigFoot McFly"
+               data-component="body">
+    <br>
+<p>The global_name registered in Discord. Example: <code>BigFoot McFly</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>avatar</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="avatar"                data-endpoint="POSTapi-v1-discord-users"
+               value=""
+               data-component="body">
+    <br>
+<p>The avatar url registered in Discord.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>locale</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="locale"                data-endpoint="POSTapi-v1-discord-users"
+               value="hu_HU"
+               data-component="body">
+    <br>
+<p>A valid <a href="#locale">locale</a>. Example: <code>hu_HU</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>timezone</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="timezone"                data-endpoint="POSTapi-v1-discord-users"
+               value="Europe/Budapest"
+               data-component="body">
+    <br>
+<p>A valid <a href="#timezone">time zone</a>. Example: <code>Europe/Budapest</code></p>
+        </div>
+        </form>
+
+                    <h2 id="discord-user-managment-GETapi-v1-discord-users--id-">Get the specified DiscordUser record.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Returns the specified <a href="#discorduser">DiscordUser</a> record.</p>
+
+<span id="example-requests-GETapi-v1-discord-users--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "localhost:9000/api/v1/discord-users/42" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "localhost:9000/api/v1/discord-users/42"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'localhost:9000/api/v1/discord-users/42';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'localhost:9000/api/v1/discord-users/42'
+headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-discord-users--id-">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 42,
+        &quot;snowflake&quot;: &quot;481398158916845568&quot;,
+        &quot;user_name&quot;: &quot;bigfootmcfly&quot;,
+        &quot;global_name&quot;: &quot;BigFoot McFly&quot;,
+        &quot;locale&quot;: &quot;hu_HU&quot;,
+        &quot;timezone&quot;: &quot;Europe/Budapest&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-discord-users--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-discord-users--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-discord-users--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-discord-users--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-discord-users--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-discord-users--id-" data-method="GET"
+      data-path="api/v1/discord-users/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-discord-users--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-discord-users--id-"
+                    onclick="tryItOut('GETapi-v1-discord-users--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-discord-users--id-"
+                    onclick="cancelTryOut('GETapi-v1-discord-users--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-discord-users--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/discord-users/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-discord-users--id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-discord-users--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-discord-users--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-v1-discord-users--id-"
+               value="42"
+               data-component="url">
+    <br>
+<p><a href="#discorduser">DiscordUser</a> ID. Example: <code>42</code></p>
+            </div>
+                    </form>
+
+                    <h2 id="discord-user-managment-PUTapi-v1-discord-users--id-">Update the specified DiscordUser record.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Updates the specified <a href="#discorduser">DiscordUser</a> with the supplied values.</p>
+
+<span id="example-requests-PUTapi-v1-discord-users--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "localhost:9000/api/v1/discord-users/42" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"snowflake\": \"481398158916845568\",
+    \"timezone\": \"Europe\\/London\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "localhost:9000/api/v1/discord-users/42"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "snowflake": "481398158916845568",
+    "timezone": "Europe\/London"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'localhost:9000/api/v1/discord-users/42';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'snowflake' =&gt; '481398158916845568',
+            'timezone' =&gt; 'Europe/London',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'localhost:9000/api/v1/discord-users/42'
+payload = {
+    "snowflake": "481398158916845568",
+    "timezone": "Europe\/London"
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-discord-users--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 42,
+        &quot;snowflake&quot;: &quot;481398158916845568&quot;,
+        &quot;user_name&quot;: &quot;bigfootmcfly&quot;,
+        &quot;global_name&quot;: &quot;BigFoot McFly&quot;,
+        &quot;locale&quot;: &quot;hu_HU&quot;,
+        &quot;timezone&quot;: &quot;Europe/London&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422, Unprocessable Content):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;errors&quot;: {
+        &quot;snowflake&quot;: [
+            &quot;Invalid snowflake&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-v1-discord-users--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-discord-users--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-discord-users--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-discord-users--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-discord-users--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-v1-discord-users--id-" data-method="PUT"
+      data-path="api/v1/discord-users/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-discord-users--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-discord-users--id-"
+                    onclick="tryItOut('PUTapi-v1-discord-users--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-discord-users--id-"
+                    onclick="cancelTryOut('PUTapi-v1-discord-users--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-discord-users--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/discord-users/{id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/v1/discord-users/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v1-discord-users--id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-v1-discord-users--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-v1-discord-users--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-v1-discord-users--id-"
+               value="42"
+               data-component="url">
+    <br>
+<p><a href="#discorduser">DiscordUser</a> ID. Example: <code>42</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>snowflake</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="snowflake"                data-endpoint="PUTapi-v1-discord-users--id-"
+               value="481398158916845568"
+               data-component="body">
+    <br>
+<p>The snowflake of the <a href="#discorduser">DiscordUser</a> to update. Example: <code>481398158916845568</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>user_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="user_name"                data-endpoint="PUTapi-v1-discord-users--id-"
+               value=""
+               data-component="body">
+    <br>
+<p>The user_name registered in Discord.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>global_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="global_name"                data-endpoint="PUTapi-v1-discord-users--id-"
+               value=""
+               data-component="body">
+    <br>
+<p>The global_name registered in Discord.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>avatar</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="avatar"                data-endpoint="PUTapi-v1-discord-users--id-"
+               value=""
+               data-component="body">
+    <br>
+<p>The avatar url registered in Discord.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>locale</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="locale"                data-endpoint="PUTapi-v1-discord-users--id-"
+               value=""
+               data-component="body">
+    <br>
+<p>A valid locale. <a href="https://github.com/Nerdtrix/language-list/blob/main/language-list-json.json" target="_blank">Locale list (json)</a></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>timezone</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="timezone"                data-endpoint="PUTapi-v1-discord-users--id-"
+               value="Europe/London"
+               data-component="body">
+    <br>
+<p>A valid <a href="#timezone">time zone</a>. Example: <code>Europe/London</code></p>
+        </div>
+        </form>
+
+                    <h2 id="discord-user-managment-DELETEapi-v1-discord-users--id-">Remove the specified DiscordUser record.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Removes the specified <a href="#discorduser">DiscordUser</a> record <strong>with</strong> all the <a href="#remainder">Remainder</a> records belonging to it.</p>
+
+<span id="example-requests-DELETEapi-v1-discord-users--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "localhost:9000/api/v1/discord-users/42" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"snowflake\": \"481398158916845568\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "localhost:9000/api/v1/discord-users/42"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "snowflake": "481398158916845568"
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'localhost:9000/api/v1/discord-users/42';
+$response = $client-&gt;delete(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'snowflake' =&gt; '481398158916845568',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'localhost:9000/api/v1/discord-users/42'
+payload = {
+    "snowflake": "481398158916845568"
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-v1-discord-users--id-">
+            <blockquote>
+            <p>Example response (204):</p>
+        </blockquote>
+                <pre>
+<code>Empty response</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-v1-discord-users--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-v1-discord-users--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-v1-discord-users--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-v1-discord-users--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-v1-discord-users--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-v1-discord-users--id-" data-method="DELETE"
+      data-path="api/v1/discord-users/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-discord-users--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-v1-discord-users--id-"
+                    onclick="tryItOut('DELETEapi-v1-discord-users--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-v1-discord-users--id-"
+                    onclick="cancelTryOut('DELETEapi-v1-discord-users--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-v1-discord-users--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v1/discord-users/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-discord-users--id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-v1-discord-users--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-v1-discord-users--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-v1-discord-users--id-"
+               value="42"
+               data-component="url">
+    <br>
+<p><a href="#discorduser">DiscordUser</a> ID. Example: <code>42</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>snowflake</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="snowflake"                data-endpoint="DELETEapi-v1-discord-users--id-"
+               value="481398158916845568"
+               data-component="body">
+    <br>
+<p>The snowflake of the <a href="#discorduser">DiscordUser</a> to delete. Example: <code>481398158916845568</code></p>
+        </div>
+        </form>
+
+                <h1 id="remainder-managment">Remainder Managment</h1>
+
+    <p>APIs to manage Remainders records.</p>
+<p>These endpoints can be used to Query/Update/Delete <a href="#remainder">Remainder</a> records.</p>
+
+                                <h2 id="remainder-managment-GETapi-v1-discord-users--discord_user_id--remainders">List of Remainder records.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Paginated list of <a href="#remainder">Remainder</a> records belonging to the specified <a href="#discorduser">DiscordUser</a>.</p>
+
+<span id="example-requests-GETapi-v1-discord-users--discord_user_id--remainders">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "localhost:9000/api/v1/discord-users/42/remainders?page_size=25&amp;page=1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "localhost:9000/api/v1/discord-users/42/remainders"
+);
+
+const params = {
+    "page_size": "25",
+    "page": "1",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'localhost:9000/api/v1/discord-users/42/remainders';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'page_size' =&gt; '25',
+            'page' =&gt; '1',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'localhost:9000/api/v1/discord-users/42/remainders'
+params = {
+  'page_size': '25',
+  'page': '1',
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers, params=params)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-discord-users--discord_user_id--remainders">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 38,
+            &quot;discord_user_id&quot;: 42,
+            &quot;channel_id&quot;: null,
+            &quot;due_at&quot;: 1736259300,
+            &quot;message&quot;: &quot;Update todo list&quot;,
+            &quot;status&quot;: &quot;new&quot;,
+            &quot;error&quot;: null
+        },
+        {
+            &quot;id&quot;: 121,
+            &quot;discord_user_id&quot;: 42,
+            &quot;channel_id&quot;: null,
+            &quot;due_at&quot;: 1736259480,
+            &quot;message&quot;: &quot;Water plants&quot;,
+            &quot;status&quot;: &quot;new&quot;,
+            &quot;error&quot;: null
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;per_page&quot;: 25,
+        &quot;to&quot;: 2,
+        &quot;total&quot;: 2
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-discord-users--discord_user_id--remainders" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-discord-users--discord_user_id--remainders"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-discord-users--discord_user_id--remainders"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-discord-users--discord_user_id--remainders" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-discord-users--discord_user_id--remainders">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-discord-users--discord_user_id--remainders" data-method="GET"
+      data-path="api/v1/discord-users/{discord_user_id}/remainders"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-discord-users--discord_user_id--remainders', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-discord-users--discord_user_id--remainders"
+                    onclick="tryItOut('GETapi-v1-discord-users--discord_user_id--remainders');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-discord-users--discord_user_id--remainders"
+                    onclick="cancelTryOut('GETapi-v1-discord-users--discord_user_id--remainders');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-discord-users--discord_user_id--remainders"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/discord-users/{discord_user_id}/remainders</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-discord-users--discord_user_id--remainders"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-discord-users--discord_user_id--remainders"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-discord-users--discord_user_id--remainders"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>discord_user_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="discord_user_id"                data-endpoint="GETapi-v1-discord-users--discord_user_id--remainders"
+               value="42"
+               data-component="url">
+    <br>
+<p><a href="#discorduser">DiscordUser</a> ID. Example: <code>42</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>page_size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="page_size"                data-endpoint="GETapi-v1-discord-users--discord_user_id--remainders"
+               value="25"
+               data-component="query">
+    <br>
+<p>Items per page. Defaults to 100. Example: <code>25</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="page"                data-endpoint="GETapi-v1-discord-users--discord_user_id--remainders"
+               value="1"
+               data-component="query">
+    <br>
+<p>Page to query. Defaults to 1. Example: <code>1</code></p>
+            </div>
+                </form>
+
+                    <h2 id="remainder-managment-POSTapi-v1-discord-users--discord_user_id--remainders">Create a new Remainder record.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Creates a new <a href="#remainder">Remainder</a> record with the provided parameters.</p>
+
+<span id="example-requests-POSTapi-v1-discord-users--discord_user_id--remainders">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "localhost:9000/api/v1/discord-users/42/remainders" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"due_at\": \"1732550400\",
+    \"message\": \"Check maintance results!\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "localhost:9000/api/v1/discord-users/42/remainders"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "due_at": "1732550400",
+    "message": "Check maintance results!"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'localhost:9000/api/v1/discord-users/42/remainders';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'due_at' =&gt; '1732550400',
+            'message' =&gt; 'Check maintance results!',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'localhost:9000/api/v1/discord-users/42/remainders'
+payload = {
+    "due_at": "1732550400",
+    "message": "Check maintance results!"
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-discord-users--discord_user_id--remainders">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 18568,
+        &quot;discord_user_id&quot;: 42,
+        &quot;channel_id&quot;: null,
+        &quot;due_at&quot;: 1732550400,
+        &quot;message&quot;: &quot;Check maintance results!&quot;,
+        &quot;status&quot;: &quot;new&quot;,
+        &quot;error&quot;: null
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-discord-users--discord_user_id--remainders" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-discord-users--discord_user_id--remainders"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-discord-users--discord_user_id--remainders"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-discord-users--discord_user_id--remainders" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-discord-users--discord_user_id--remainders">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-discord-users--discord_user_id--remainders" data-method="POST"
+      data-path="api/v1/discord-users/{discord_user_id}/remainders"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-discord-users--discord_user_id--remainders', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-discord-users--discord_user_id--remainders"
+                    onclick="tryItOut('POSTapi-v1-discord-users--discord_user_id--remainders');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-discord-users--discord_user_id--remainders"
+                    onclick="cancelTryOut('POSTapi-v1-discord-users--discord_user_id--remainders');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-discord-users--discord_user_id--remainders"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/discord-users/{discord_user_id}/remainders</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-v1-discord-users--discord_user_id--remainders"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-discord-users--discord_user_id--remainders"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-discord-users--discord_user_id--remainders"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>discord_user_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="discord_user_id"                data-endpoint="POSTapi-v1-discord-users--discord_user_id--remainders"
+               value="42"
+               data-component="url">
+    <br>
+<p><a href="#discorduser">DiscordUser</a> ID. Example: <code>42</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>due_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="due_at"                data-endpoint="POSTapi-v1-discord-users--discord_user_id--remainders"
+               value="1732550400"
+               data-component="body">
+    <br>
+<p>The &quot;Due at&quot; time (<a href="#timestamp">timestamp</a>) of the remainder Example: <code>1732550400</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="message"                data-endpoint="POSTapi-v1-discord-users--discord_user_id--remainders"
+               value="Check maintance results!"
+               data-component="body">
+    <br>
+<p>The message to send to the discord user. Example: <code>Check maintance results!</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>channel_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="channel_id"                data-endpoint="POSTapi-v1-discord-users--discord_user_id--remainders"
+               value=""
+               data-component="body">
+    <br>
+<p>The <a href="#snowflake">snowflake</a> of the channel to send the remainder to.</p>
+        </div>
+        </form>
+
+                    <h2 id="remainder-managment-PUTapi-v1-discord-users--discord_user_id--remainders--id-">Update the specified Remainder record.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Updates the specified <a href="#remainder">Remainder</a> record with the provided parameters.</p>
+
+<span id="example-requests-PUTapi-v1-discord-users--discord_user_id--remainders--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "localhost:9000/api/v1/discord-users/42/remainders/18568" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"status\": \"failed\",
+    \"error\": \"Unknow user\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "localhost:9000/api/v1/discord-users/42/remainders/18568"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "status": "failed",
+    "error": "Unknow user"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'localhost:9000/api/v1/discord-users/42/remainders/18568';
+$response = $client-&gt;put(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'status' =&gt; 'failed',
+            'error' =&gt; 'Unknow user',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'localhost:9000/api/v1/discord-users/42/remainders/18568'
+payload = {
+    "status": "failed",
+    "error": "Unknow user"
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-v1-discord-users--discord_user_id--remainders--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 18568,
+        &quot;discord_user_id&quot;: 42,
+        &quot;channel_id&quot;: null,
+        &quot;due_at&quot;: 1732550400,
+        &quot;message&quot;: &quot;Check maintance results!&quot;,
+        &quot;status&quot;: &quot;failed&quot;,
+        &quot;error&quot;: &quot;Unknow user&quot;
+    },
+    &quot;changes&quot;: {
+        &quot;status&quot;: {
+            &quot;old&quot;: &quot;new&quot;,
+            &quot;new&quot;: &quot;failed&quot;
+        },
+        &quot;error&quot;: {
+            &quot;old&quot;: null,
+            &quot;new&quot;: &quot;Unknow user&quot;
+        }
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-v1-discord-users--discord_user_id--remainders--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-v1-discord-users--discord_user_id--remainders--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-PUTapi-v1-discord-users--discord_user_id--remainders--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-v1-discord-users--discord_user_id--remainders--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-PUTapi-v1-discord-users--discord_user_id--remainders--id-" data-method="PUT"
+      data-path="api/v1/discord-users/{discord_user_id}/remainders/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-v1-discord-users--discord_user_id--remainders--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+                    onclick="tryItOut('PUTapi-v1-discord-users--discord_user_id--remainders--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+                    onclick="cancelTryOut('PUTapi-v1-discord-users--discord_user_id--remainders--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/v1/discord-users/{discord_user_id}/remainders/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>discord_user_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="discord_user_id"                data-endpoint="PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="42"
+               data-component="url">
+    <br>
+<p><a href="#discorduser">DiscordUser</a> ID. Example: <code>42</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="18568"
+               data-component="url">
+    <br>
+<p><a href="#remainder">Remainder</a> ID. Example: <code>18568</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>due_at</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="due_at"                data-endpoint="PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+               value=""
+               data-component="body">
+    <br>
+<p>The &quot;Due at&quot; time (<a href="#timestamp">timestamp</a>) of the remainder.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>message</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="message"                data-endpoint="PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+               value=""
+               data-component="body">
+    <br>
+<p>The message to send to the discord user.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>channel_id</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="channel_id"                data-endpoint="PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+               value=""
+               data-component="body">
+    <br>
+<p>The <a href="#snowflake">snowflake</a> of the channel to send the remainder to.</p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>status</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="status"                data-endpoint="PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="failed"
+               data-component="body">
+    <br>
+<p>Status of the <a href="#remainder">Remainder</a>.</p>
+<p>For possible values see: <a href="#remainderstatus">RemainderStatus</a> Example: <code>failed</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>error</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+                              name="error"                data-endpoint="PUTapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="Unknow user"
+               data-component="body">
+    <br>
+<p>Error description in case of failure. Example: <code>Unknow user</code></p>
+        </div>
+        </form>
+
+                    <h2 id="remainder-managment-DELETEapi-v1-discord-users--discord_user_id--remainders--id-">Remove the specified Remainder record.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Removes the specified <a href="#remainder">Remainder</a> record with the provided parameters.</p>
+
+<span id="example-requests-DELETEapi-v1-discord-users--discord_user_id--remainders--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "localhost:9000/api/v1/discord-users/42/remainders/18568" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"snowflake\": \"481398158916845568\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "localhost:9000/api/v1/discord-users/42/remainders/18568"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "snowflake": "481398158916845568"
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'localhost:9000/api/v1/discord-users/42/remainders/18568';
+$response = $client-&gt;delete(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'snowflake' =&gt; '481398158916845568',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'localhost:9000/api/v1/discord-users/42/remainders/18568'
+payload = {
+    "snowflake": "481398158916845568"
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-v1-discord-users--discord_user_id--remainders--id-">
+            <blockquote>
+            <p>Example response (204):</p>
+        </blockquote>
+                <pre>
+<code>Empty response</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-v1-discord-users--discord_user_id--remainders--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-v1-discord-users--discord_user_id--remainders--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-v1-discord-users--discord_user_id--remainders--id-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-v1-discord-users--discord_user_id--remainders--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-v1-discord-users--discord_user_id--remainders--id-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-DELETEapi-v1-discord-users--discord_user_id--remainders--id-" data-method="DELETE"
+      data-path="api/v1/discord-users/{discord_user_id}/remainders/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-v1-discord-users--discord_user_id--remainders--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-v1-discord-users--discord_user_id--remainders--id-"
+                    onclick="tryItOut('DELETEapi-v1-discord-users--discord_user_id--remainders--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-v1-discord-users--discord_user_id--remainders--id-"
+                    onclick="cancelTryOut('DELETEapi-v1-discord-users--discord_user_id--remainders--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-v1-discord-users--discord_user_id--remainders--id-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/v1/discord-users/{discord_user_id}/remainders/{id}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="DELETEapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="DELETEapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="DELETEapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>discord_user_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="discord_user_id"                data-endpoint="DELETEapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="42"
+               data-component="url">
+    <br>
+<p><a href="#discorduser">DiscordUser</a> ID. Example: <code>42</code></p>
+            </div>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="18568"
+               data-component="url">
+    <br>
+<p><a href="#remainder">Remainder</a> ID. Example: <code>18568</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>snowflake</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="snowflake"                data-endpoint="DELETEapi-v1-discord-users--discord_user_id--remainders--id-"
+               value="481398158916845568"
+               data-component="body">
+    <br>
+<p>The <a href="#snowflake">snowflake</a> of the DiscordUser of the Remainder to delete. Example: <code>481398158916845568</code></p>
+        </div>
+        </form>
+
+                <h1 id="remainder-by-dueat-managment">Remainder by DueAt Managment</h1>
+
+    <p>API to get Remainder records.</p>
+<p>This endpoint can be used to Query the actual <a href="#remainder">Remainder</a> records.</p>
+
+                                <h2 id="remainder-by-dueat-managment-GETapi-v1-remainder-by-due-at--due_at-">Returns all the &quot;actual&quot; reaminders for the given second.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-remainder-by-due-at--due_at-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "localhost:9000/api/v1/remainder-by-due-at/1735685999?page_size=25&amp;page=1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "localhost:9000/api/v1/remainder-by-due-at/1735685999"
+);
+
+const params = {
+    "page_size": "25",
+    "page": "1",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'localhost:9000/api/v1/remainder-by-due-at/1735685999';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'page_size' =&gt; '25',
+            'page' =&gt; '1',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'localhost:9000/api/v1/remainder-by-due-at/1735685999'
+params = {
+  'page_size': '25',
+  'page': '1',
+}
+headers = {
+  'Authorization': 'Bearer {YOUR_AUTH_KEY}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers, params=params)
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-remainder-by-due-at--due_at-">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 56,
+            &quot;discord_user_id&quot;: 42,
+            &quot;channel_id&quot;: null,
+            &quot;due_at&quot;: 1735685999,
+            &quot;message&quot;: &quot;Update conatiner registry!&quot;,
+            &quot;status&quot;: &quot;new&quot;,
+            &quot;error&quot;: null
+        },
+        {
+            &quot;id&quot;: 192,
+            &quot;discord_user_id&quot;: 47,
+            &quot;channel_id&quot;: null,
+            &quot;due_at&quot;: 1735685999,
+            &quot;message&quot;: &quot;Get some milk&quot;,
+            &quot;status&quot;: &quot;new&quot;,
+            &quot;error&quot;: null
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;per_page&quot;: 100,
+        &quot;to&quot;: 2,
+        &quot;total&quot;: 2
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-remainder-by-due-at--due_at-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-remainder-by-due-at--due_at-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-remainder-by-due-at--due_at-"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-remainder-by-due-at--due_at-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-remainder-by-due-at--due_at-">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-v1-remainder-by-due-at--due_at-" data-method="GET"
+      data-path="api/v1/remainder-by-due-at/{due_at}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-remainder-by-due-at--due_at-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-remainder-by-due-at--due_at-"
+                    onclick="tryItOut('GETapi-v1-remainder-by-due-at--due_at-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-remainder-by-due-at--due_at-"
+                    onclick="cancelTryOut('GETapi-v1-remainder-by-due-at--due_at-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-remainder-by-due-at--due_at-"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/remainder-by-due-at/{due_at}</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization" class="auth-value"               data-endpoint="GETapi-v1-remainder-by-due-at--due_at-"
+               value="Bearer {YOUR_AUTH_KEY}"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer {YOUR_AUTH_KEY}</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="GETapi-v1-remainder-by-due-at--due_at-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="GETapi-v1-remainder-by-due-at--due_at-"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>due_at</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="due_at"                data-endpoint="GETapi-v1-remainder-by-due-at--due_at-"
+               value="1735685999"
+               data-component="url">
+    <br>
+<p>The time (<a href="#timestamp">timestamp</a>) of the requested remainders. Example: <code>1735685999</code></p>
+            </div>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>page_size</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="page_size"                data-endpoint="GETapi-v1-remainder-by-due-at--due_at-"
+               value="25"
+               data-component="query">
+    <br>
+<p>Items per page. Defaults to 100. Example: <code>25</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>page</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="page"                data-endpoint="GETapi-v1-remainder-by-due-at--due_at-"
+               value="1"
+               data-component="query">
+    <br>
+<p>Page to query. Defaults to 1. Example: <code>1</code></p>
+            </div>
+                </form>
+
+            
+
+        <h1 id="classes">Classes</h1>
+<h2 id="discorduser">DiscordUser</h2>
+<p>This record stores the general informations of a discord user.</p>
+<h3 id="fields">Fields</h3>
+<ul>
+<li><strong>id</strong> - <em>The unique ID of the DiscordUser record.</em></li>
+<li><strong>snowflake</strong> - <em>The unique snowflake of the discord user.</em></li>
+<li><strong>user_name</strong> - <em>The name of the discord user.</em></li>
+<li><strong>global_name</strong> - <em>The global name of the discord user.</em></li>
+<li><strong>locale</strong> - <em>The locale of the discord user.</em></li>
+<li><strong>timezone</strong> - <em>The timezone of the discord user.</em></li>
+</ul>
+<blockquote>
+<p>Exaple:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 42,
+    "snowflake": "481398158916845568",
+    "user_name": "bigfootmcfly",
+    "global_name": "BigFoot McFly",
+    "locale": "hu_HU",
+    "timezone": "Europe/Budapest"
+}</code></pre>
+<h2 id="remainder">Remainder</h2>
+<h3 id="fields">Fields</h3>
+<ul>
+<li><strong>id</strong> - <em>The unique ID of the Remainder record.</em></li>
+<li><strong>discord_user_id</strong> - <em>The internal ID of the <a href="#discorduser">DiscordUser</a>.</em></li>
+<li><strong>channel_id</strong> - <em>The snowflake of the channel the remainder should be sent to.</em></li>
+<li><strong>due_at</strong> - <em>The &quot;Due at&quot; time (<a href="#timestamp">timestamp</a>) of the remainder.</em></li>
+<li><strong>message</strong> - <em>The message to send to the discord user.</em></li>
+<li><strong>status</strong> - <em>The <a href="#remainderstatus">status</a> of the remainder.</em></li>
+<li><strong>error</strong> - <em>The error (if any) that caused the remainder to fail.</em></li>
+</ul>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre><code class="language-json">{
+    "id": 18568,
+    "discord_user_id": 42,
+    "channel_id": null,
+    "due_at": 1732950700,
+    "message": "Maintance completed.",
+    "status": "new",
+    "error": null
+}</code></pre>
+<h1 id="types">Types</h1>
+<h2 id="timestamp">Timestamp</h2>
+<p>It measures time by the number of non-leap seconds that have elapsed since 00:00:00 UTC on 1 January 1970, the Unix epoch.</p>
+<p>See: <a href="https://en.wikipedia.org/wiki/Unix_time" target="_blank">Unix time on Wikipedia</a></p>
+<p>See: <a href="https://www.unixtimestamp.com/" target="_blank">Timestamp converter</a></p>
+<h2 id="snowflake">Snowflake</h2>
+<p>A unique identifier within the discord namespace.</p>
+<p>See: <a href="https://discord.com/developers/docs/reference#snowflakes" target="_blank">Discord reference #snowflakes</a></p>
+<h2 id="locale">Locale</h2>
+<p>A valid local identifier.</p>
+<p><a href="https://github.com/Nerdtrix/language-list/blob/main/language-list-json.json" target="_blank">Locale list (json)</a></p>
+<h2 id="timezone">Timezone</h2>
+<p>A valid timezone.</p>
+<p><a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank">Timezone list</a></p>
+<h2 id="remainderstatus">RemainderStatus</h2>
+<p>The status of a remainder.</p>
+<p>Available values:</p>
+<ul>
+<li><strong>new</strong> - <em>New remainder.</em></li>
+<li><strong>failed</strong> - <em>Something went wrong, will not try to resend it.</em></li>
+<li><strong>pending</strong> - <em>The remainder is currently being processed.</em></li>
+<li><strong>deleted</strong> - <em>The remainder was deleted.</em></li>
+<li><strong>finished</strong> - <em>The remainder finished succesfully.</em></li>
+<li><strong>cancelled</strong> - <em>The remainder was cancelled.</em></li>
+</ul>
+<h1 id="error-responses">Error responses</h1>
+<h2 id="unauthorized-401">Unauthorized (401)</h2>
+<p>In case no authentication is provided or the authentication fails, a <strong><code>401, Unauthorized</code></strong> response is returned.</p>
+<blockquote>
+<p>Exa
+mple response (401, Unauthorized):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Unauthenticated."
+}</code></pre>
+<h2 id="not-found-404">Not Found (404)</h2>
+<p>If the requested record cannot be found, a <strong><code>404, Not Found</code></strong> response is returned.</p>
+<blockquote>
+<p>Example response (404, Not Found):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Not Found."
+}</code></pre>
+<h2 id="unprocessable-content-422">Unprocessable Content (422)</h2>
+<p>If the request cannot be fulfilled, a <strong><code>422, Unprocessable Content</code></strong> response is returned.</p>
+<p>See the returned message for details about the failure.</p>
+<p>This is mostly due to <strong><code>validation errors</code></strong>.</p>
+<blockquote>
+<p>Example response (422, Unprocessable Content):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "errors": {
+        "snowflake": [
+            "Invalid snowflake"
+        ]
+    }
+}</code></pre>
+<h2 id="internal-server-error-500">Internal Server Error (500)</h2>
+<p>An internal server error occured. Please try again later or contact the operator.</p>
+<blockquote>
+<p>Example response (500, Internal Server Error):</p>
+</blockquote>
+<pre><code class="language-json">{
+    "message": "Server Error"
+}</code></pre>
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                                        <button type="button" class="lang-button" data-language-name="php">php</button>
+                                                        <button type="button" class="lang-button" data-language-name="python">python</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

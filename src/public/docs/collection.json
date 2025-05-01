@@ -1,0 +1,612 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "localhost:9000"
+        }
+    ],
+    "info": {
+        "name": "API documentation",
+        "_postman_id": "7404156f-c8b1-4ba6-88d2-bfd277ad3788",
+        "description": "Documentation for the Backend API.",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Discord User By snowflake Managment",
+            "description": "\nAPIs to manage DiscordUser records.\n\nThese endpoints can be used to identify\/create DiscordUser records identified by the [snowflake](#snowflake) that already exists in the discord app.",
+            "item": [
+                {
+                    "name": "Get the DiscordUser identified by the specified snowflake.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/discord-user-by-snowflake\/:discord_user_snowflake",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/discord-user-by-snowflake\/:discord_user_snowflake",
+                            "variable": [
+                                {
+                                    "id": "discord_user_snowflake",
+                                    "key": "discord_user_snowflake",
+                                    "value": "481398158916845568",
+                                    "description": "A valid [snowflake](#snowflake)."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns the [DiscordUser](#discorduser) record for the specified [snowflake](#snowflake), given in the url __discord_user_snowflake__ parameter.\n\nIf it cannot be found, a [**404, Not Found**](#not-found-404) error is returned."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":42,\"snowflake\":\"481398158916845568\",\"user_name\":\"bigfootmcfly\",\"global_name\":\"BigFoot McFly\",\"locale\":\"hu_HU\",\"timezone\":\"Europe\\\/Budapest\"}}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 404,
+                            "body": "{\"message\":\"Not Found.\"}",
+                            "name": "not found"
+                        }
+                    ]
+                },
+                {
+                    "name": "Get _OR_ Update\/Create the DiscordUser identified by the specified snowflake.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/discord-user-by-snowflake\/:snowflake",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/discord-user-by-snowflake\/:snowflake",
+                            "variable": [
+                                {
+                                    "id": "snowflake",
+                                    "key": "snowflake",
+                                    "value": "481398158916845568",
+                                    "description": "A valid [snowflake](#snowflake)."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"snowflake\":\"481398158916845568\",\"user_name\":\"bigfootmcfly\",\"global_name\":\"BigFoot McFly\",\"locale\":\"en_GB\",\"timezone\":\"Europe\\\/London\"}"
+                        },
+                        "description": "If the record specified by the url __discord_user_snowflake__ parameter exists, it will be updated with the data provided in the body of the request.\n\nIf it does not exists, it will be created using the given data.\n\nReturns the **updated\/created** [DiscordUser](#discorduser) record.\n\nIf anything goes wrong, a [**422, Unprocessable Content**](#unprocessable-content-422) error with more details will be returned."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":42,\"snowflake\":\"481398158916845568\",\"user_name\":\"bigfootmcfly\",\"global_name\":\"BigFoot McFly\",\"locale\":\"en_GB\",\"timezone\":\"Europe\\\/London\"},\"changes\":{\"locale\":{\"old\":\"hu_HU\",\"new\":\"en_GB\"},\"timezone\":{\"old\":\"Europe\\\/Budapest\",\"new\":\"Europe\\\/London\"}}}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"errors\":{\"snowflake\":[\"The snowflake field is required.\"]}}",
+                            "name": "Unprocessable Content"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Discord User Managment",
+            "description": "\nAPIs to manage [DiscordUser](#discorduser) records.\n\nThese endpoints can be used to Query\/Update\/Delete [DiscordUser](#discorduser) records.",
+            "item": [
+                {
+                    "name": "List DiscorUsers.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/discord-users",
+                            "query": [
+                                {
+                                    "key": "page_size",
+                                    "value": "25",
+                                    "description": "Items per page. Defaults to 100.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Page to query. Defaults to 1.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/discord-users?page_size=25&page=1"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Paginated list of [DiscordUser](#discorduser) records."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"snowflake\":\"481398158916845568\",\"user_name\":\"bigfootmcfly\",\"global_name\":\"BigFoot McFly\",\"locale\":\"hu_HU\",\"timezone\":\"Europe\/Budapest\"},{\"id\":6,\"snowflake\":\"860046989130727450\",\"user_name\":\"Teszt Elek\",\"global_name\":\"holnap_is_teszt_elek\",\"locale\":\"hu\",\"timezone\":\"Europe\/Budapest\"},{\"id\":12,\"snowflake\":\"112233445566778899\",\"user_name\":\"Igaz \u00c1lmos\",\"global_name\":\"almos#1244\",\"locale\":null,\"timezone\":null}],\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"per_page\":10,\"to\":3,\"total\":3}}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a new DiscordUser record.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/discord-users",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/discord-users"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"snowflake\":\"481398158916845568\",\"user_name\":\"bigfootmcfly\",\"global_name\":\"BigFoot McFly\",\"locale\":\"hu_HU\",\"timezone\":\"Europe\\\/Budapest\"}"
+                        },
+                        "description": "Creates a new [DiscordUser](#discorduser) record with the provided parameters."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":42,\"snowflake\":\"481398158916845568\",\"user_name\":\"bigfootmcfly\",\"global_name\":\"BigFoot McFly\",\"locale\":\"hu_HU\",\"timezone\":\"Europe\\\/Budapest\"}}",
+                            "name": "success"
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"errors\":{\"snowflake\":[\"The snowflake has already been taken.\"]}}",
+                            "name": "Unprocessable Content"
+                        }
+                    ]
+                },
+                {
+                    "name": "Get the specified DiscordUser record.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/discord-users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/discord-users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "42",
+                                    "description": "[DiscordUser](#discorduser) ID."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Returns the specified [DiscordUser](#discorduser) record."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":42,\"snowflake\":\"481398158916845568\",\"user_name\":\"bigfootmcfly\",\"global_name\":\"BigFoot McFly\",\"locale\":\"hu_HU\",\"timezone\":\"Europe\\\/Budapest\"}}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified DiscordUser record.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/discord-users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/discord-users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "42",
+                                    "description": "[DiscordUser](#discorduser) ID."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"snowflake\":\"481398158916845568\",\"timezone\":\"Europe\\\/London\"}"
+                        },
+                        "description": "Updates the specified [DiscordUser](#discorduser) with the supplied values."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":42,\"snowflake\":\"481398158916845568\",\"user_name\":\"bigfootmcfly\",\"global_name\":\"BigFoot McFly\",\"locale\":\"hu_HU\",\"timezone\":\"Europe\\\/London\"}}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 422,
+                            "body": "{\"errors\":{\"snowflake\":[\"Invalid snowflake\"]}}",
+                            "name": "Unprocessable Content"
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified DiscordUser record.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/discord-users\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/discord-users\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "42",
+                                    "description": "[DiscordUser](#discorduser) ID."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"snowflake\":\"481398158916845568\"}"
+                        },
+                        "description": "Removes the specified [DiscordUser](#discorduser) record **with** all the [Remainder](#remainder) records belonging to it."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Remainder Managment",
+            "description": "\nAPIs to manage Remainders records.\n\nThese endpoints can be used to Query\/Update\/Delete [Remainder](#remainder) records.",
+            "item": [
+                {
+                    "name": "List of Remainder records.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/discord-users\/:discord_user_id\/remainders",
+                            "query": [
+                                {
+                                    "key": "page_size",
+                                    "value": "25",
+                                    "description": "Items per page. Defaults to 100.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Page to query. Defaults to 1.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/discord-users\/:discord_user_id\/remainders?page_size=25&page=1",
+                            "variable": [
+                                {
+                                    "id": "discord_user_id",
+                                    "key": "discord_user_id",
+                                    "value": "42",
+                                    "description": "[DiscordUser](#discorduser) ID."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Paginated list of [Remainder](#remainder) records belonging to the specified [DiscordUser](#discorduser)."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":38,\"discord_user_id\":42,\"channel_id\":null,\"due_at\":1736259300,\"message\":\"Update todo list\",\"status\":\"new\",\"error\":null},{\"id\":121,\"discord_user_id\":42,\"channel_id\":null,\"due_at\":1736259480,\"message\":\"Water plants\",\"status\":\"new\",\"error\":null}],\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"per_page\":25,\"to\":2,\"total\":2}}",
+                            "name": "success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Create a new Remainder record.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/discord-users\/:discord_user_id\/remainders",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/discord-users\/:discord_user_id\/remainders",
+                            "variable": [
+                                {
+                                    "id": "discord_user_id",
+                                    "key": "discord_user_id",
+                                    "value": "42",
+                                    "description": "[DiscordUser](#discorduser) ID."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"due_at\":\"1732550400\",\"message\":\"Check maintance results!\"}"
+                        },
+                        "description": "Creates a new [Remainder](#remainder) record with the provided parameters."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":18568,\"discord_user_id\":42,\"channel_id\":null,\"due_at\":1732550400,\"message\":\"Check maintance results!\",\"status\":\"new\",\"error\":null}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified Remainder record.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/discord-users\/:discord_user_id\/remainders\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/discord-users\/:discord_user_id\/remainders\/:id",
+                            "variable": [
+                                {
+                                    "id": "discord_user_id",
+                                    "key": "discord_user_id",
+                                    "value": "42",
+                                    "description": "[DiscordUser](#discorduser) ID."
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "18568",
+                                    "description": "[Remainder](#remainder) ID."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"status\":\"failed\",\"error\":\"Unknow user\"}"
+                        },
+                        "description": "Updates the specified [Remainder](#remainder) record with the provided parameters."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":18568,\"discord_user_id\":42,\"channel_id\":null,\"due_at\":1732550400,\"message\":\"Check maintance results!\",\"status\":\"failed\",\"error\":\"Unknow user\"},\"changes\":{\"status\":{\"old\":\"new\",\"new\":\"failed\"},\"error\":{\"old\":null,\"new\":\"Unknow user\"}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Remove the specified Remainder record.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/discord-users\/:discord_user_id\/remainders\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/discord-users\/:discord_user_id\/remainders\/:id",
+                            "variable": [
+                                {
+                                    "id": "discord_user_id",
+                                    "key": "discord_user_id",
+                                    "value": "42",
+                                    "description": "[DiscordUser](#discorduser) ID."
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "18568",
+                                    "description": "[Remainder](#remainder) ID."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"snowflake\":\"481398158916845568\"}"
+                        },
+                        "description": "Removes the specified [Remainder](#remainder) record with the provided parameters."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 204,
+                            "body": "{}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Remainder by DueAt Managment",
+            "description": "\nAPI to get Remainder records.\n\nThis endpoint can be used to Query the actual [Remainder](#remainder) records.",
+            "item": [
+                {
+                    "name": "Returns all the \"actual\" reaminders for the given second.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/remainder-by-due-at\/:due_at",
+                            "query": [
+                                {
+                                    "key": "page_size",
+                                    "value": "25",
+                                    "description": "Items per page. Defaults to 100.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Page to query. Defaults to 1.",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/v1\/remainder-by-due-at\/:due_at?page_size=25&page=1",
+                            "variable": [
+                                {
+                                    "id": "due_at",
+                                    "key": "due_at",
+                                    "value": "1735685999",
+                                    "description": "The time ([timestamp](#timestamp)) of the requested remainders."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":56,\"discord_user_id\":42,\"channel_id\":null,\"due_at\":1735685999,\"message\":\"Update conatiner registry!\",\"status\":\"new\",\"error\":null},{\"id\":192,\"discord_user_id\":47,\"channel_id\":null,\"due_at\":1735685999,\"message\":\"Get some milk\",\"status\":\"new\",\"error\":null}],\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"per_page\":100,\"to\":2,\"total\":2}}",
+                            "name": "success"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "Authorization",
+                "type": "string"
+            }
+        ]
+    }
+}

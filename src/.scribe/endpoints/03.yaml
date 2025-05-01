@@ -1,0 +1,84 @@
+name: 'Remainder by DueAt Managment'
+description: |-
+
+  API to get Remainder records.
+
+  This endpoint can be used to Query the actual [Remainder](#remainder) records.
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/remainder-by-due-at/{due_at}'
+    metadata:
+      groupName: 'Remainder by DueAt Managment'
+      groupDescription: |-
+
+        API to get Remainder records.
+
+        This endpoint can be used to Query the actual [Remainder](#remainder) records.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Returns all the "actual" reaminders for the given second.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      due_at:
+        name: due_at
+        description: 'The time ([timestamp](#timestamp)) of the requested remainders.'
+        required: true
+        example: 1735685999
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      due_at: 1735685999
+    queryParameters:
+      page_size:
+        name: page_size
+        description: 'Items per page. Defaults to 100.'
+        required: false
+        example: 25
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      page:
+        name: page
+        description: 'Page to query. Defaults to 1.'
+        required: false
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      page_size: 25
+      page: 1
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":56,"discord_user_id":42,"channel_id":null,"due_at":1735685999,"message":"Update conatiner registry!","status":"new","error":null},{"id":192,"discord_user_id":47,"channel_id":null,"due_at":1735685999,"message":"Get some milk","status":"new","error":null}],"meta":{"current_page":1,"from":1,"last_page":1,"per_page":100,"to":2,"total":2}}'
+        headers: []
+        description: success
+        custom: []
+    responseFields: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer DWg0pwbKhoC45vSEKiY7o2fqyuawN4F1yCC6bbiYee795197'
+    controller: null
+    method: null
+    route: null
+    custom: []

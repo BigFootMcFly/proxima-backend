@@ -1,0 +1,1151 @@
+openapi: 3.0.3
+info:
+  title: 'API documentation'
+  description: 'Documentation for the Backend API.'
+  version: 1.0.0
+servers:
+  -
+    url: 'localhost:9000'
+paths:
+  '/api/v1/discord-user-by-snowflake/{discord_user_snowflake}':
+    get:
+      summary: 'Get the DiscordUser identified by the specified snowflake.'
+      operationId: getTheDiscordUserIdentifiedByTheSpecifiedSnowflake
+      description: "Returns the [DiscordUser](#discorduser) record for the specified [snowflake](#snowflake), given in the url __discord_user_snowflake__ parameter.\n\nIf it cannot be found, a [**404, Not Found**](#not-found-404) error is returned."
+      parameters: []
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 42
+                    snowflake: '481398158916845568'
+                    user_name: bigfootmcfly
+                    global_name: 'BigFoot McFly'
+                    locale: hu_HU
+                    timezone: Europe/Budapest
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 42
+                      snowflake:
+                        type: string
+                        example: '481398158916845568'
+                      user_name:
+                        type: string
+                        example: bigfootmcfly
+                      global_name:
+                        type: string
+                        example: 'BigFoot McFly'
+                      locale:
+                        type: string
+                        example: hu_HU
+                      timezone:
+                        type: string
+                        example: Europe/Budapest
+        404:
+          description: 'not found'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Not Found.'
+                properties:
+                  message:
+                    type: string
+                    example: 'Not Found.'
+      tags:
+        - 'Discord User By snowflake Managment'
+    parameters:
+      -
+        in: path
+        name: discord_user_snowflake
+        description: 'A valid [snowflake](#snowflake).'
+        example: '481398158916845568'
+        required: true
+        schema:
+          type: string
+  '/api/v1/discord-user-by-snowflake/{snowflake}':
+    put:
+      summary: 'Get _OR_ Update/Create the DiscordUser identified by the specified snowflake.'
+      operationId: getORUpdateCreateTheDiscordUserIdentifiedByTheSpecifiedSnowflake
+      description: "If the record specified by the url __discord_user_snowflake__ parameter exists, it will be updated with the data provided in the body of the request.\n\nIf it does not exists, it will be created using the given data.\n\nReturns the **updated/created** [DiscordUser](#discorduser) record.\n\nIf anything goes wrong, a [**422, Unprocessable Content**](#unprocessable-content-422) error with more details will be returned."
+      parameters: []
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 42
+                    snowflake: '481398158916845568'
+                    user_name: bigfootmcfly
+                    global_name: 'BigFoot McFly'
+                    locale: en_GB
+                    timezone: Europe/London
+                  changes:
+                    locale:
+                      old: hu_HU
+                      new: en_GB
+                    timezone:
+                      old: Europe/Budapest
+                      new: Europe/London
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 42
+                      snowflake:
+                        type: string
+                        example: '481398158916845568'
+                      user_name:
+                        type: string
+                        example: bigfootmcfly
+                      global_name:
+                        type: string
+                        example: 'BigFoot McFly'
+                      locale:
+                        type: string
+                        example: en_GB
+                      timezone:
+                        type: string
+                        example: Europe/London
+                  changes:
+                    type: object
+                    properties:
+                      locale:
+                        type: object
+                        properties:
+                          old:
+                            type: string
+                            example: hu_HU
+                          new:
+                            type: string
+                            example: en_GB
+                      timezone:
+                        type: object
+                        properties:
+                          old:
+                            type: string
+                            example: Europe/Budapest
+                          new:
+                            type: string
+                            example: Europe/London
+        422:
+          description: 'Unprocessable Content'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errors:
+                    snowflake:
+                      - 'The snowflake field is required.'
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      snowflake:
+                        type: array
+                        example:
+                          - 'The snowflake field is required.'
+                        items:
+                          type: string
+      tags:
+        - 'Discord User By snowflake Managment'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                snowflake:
+                  type: string
+                  description: 'A valid [snowflake](#snowflake).'
+                  example: '481398158916845568'
+                  nullable: false
+                user_name:
+                  type: string
+                  description: 'The user_name registered in Discord.'
+                  example: bigfootmcfly
+                  nullable: true
+                global_name:
+                  type: string
+                  description: 'The global_name registered in Discord.'
+                  example: 'BigFoot McFly'
+                  nullable: true
+                avatar:
+                  type: string
+                  description: 'The avatar url registered in Discord.'
+                  example: null
+                  nullable: true
+                locale:
+                  type: string
+                  description: 'A valid [locale](#locale).'
+                  example: en_GB
+                  nullable: true
+                timezone:
+                  type: string
+                  description: 'A valid [time zone](#timezone).'
+                  example: Europe/London
+                  nullable: true
+              required:
+                - snowflake
+    parameters:
+      -
+        in: path
+        name: snowflake
+        description: 'A valid [snowflake](#snowflake).'
+        example: '481398158916845568'
+        required: true
+        schema:
+          type: string
+  /api/v1/discord-users:
+    get:
+      summary: 'List DiscorUsers.'
+      operationId: listDiscorUsers
+      description: 'Paginated list of [DiscordUser](#discorduser) records.'
+      parameters:
+        -
+          in: query
+          name: page_size
+          description: 'Items per page. Defaults to 100.'
+          example: 25
+          required: false
+          schema:
+            type: integer
+            description: 'Items per page. Defaults to 100.'
+            example: 25
+            nullable: false
+        -
+          in: query
+          name: page
+          description: 'Page to query. Defaults to 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page to query. Defaults to 1.'
+            example: 1
+            nullable: false
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      snowflake: '481398158916845568'
+                      user_name: bigfootmcfly
+                      global_name: 'BigFoot McFly'
+                      locale: hu_HU
+                      timezone: Europe/Budapest
+                    -
+                      id: 6
+                      snowflake: '860046989130727450'
+                      user_name: 'Teszt Elek'
+                      global_name: holnap_is_teszt_elek
+                      locale: hu
+                      timezone: Europe/Budapest
+                    -
+                      id: 12
+                      snowflake: '112233445566778899'
+                      user_name: 'Igaz Álmos'
+                      global_name: 'almos#1244'
+                      locale: null
+                      timezone: null
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    per_page: 10
+                    to: 3
+                    total: 3
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        snowflake: '481398158916845568'
+                        user_name: bigfootmcfly
+                        global_name: 'BigFoot McFly'
+                        locale: hu_HU
+                        timezone: Europe/Budapest
+                      -
+                        id: 6
+                        snowflake: '860046989130727450'
+                        user_name: 'Teszt Elek'
+                        global_name: holnap_is_teszt_elek
+                        locale: hu
+                        timezone: Europe/Budapest
+                      -
+                        id: 12
+                        snowflake: '112233445566778899'
+                        user_name: 'Igaz Álmos'
+                        global_name: 'almos#1244'
+                        locale: null
+                        timezone: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        snowflake:
+                          type: string
+                          example: '481398158916845568'
+                        user_name:
+                          type: string
+                          example: bigfootmcfly
+                        global_name:
+                          type: string
+                          example: 'BigFoot McFly'
+                        locale:
+                          type: string
+                          example: hu_HU
+                        timezone:
+                          type: string
+                          example: Europe/Budapest
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      per_page:
+                        type: integer
+                        example: 10
+                      to:
+                        type: integer
+                        example: 3
+                      total:
+                        type: integer
+                        example: 3
+      tags:
+        - 'Discord User Managment'
+    post:
+      summary: 'Create a new DiscordUser record.'
+      operationId: createANewDiscordUserRecord
+      description: 'Creates a new [DiscordUser](#discorduser) record with the provided parameters.'
+      parameters: []
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 42
+                    snowflake: '481398158916845568'
+                    user_name: bigfootmcfly
+                    global_name: 'BigFoot McFly'
+                    locale: hu_HU
+                    timezone: Europe/Budapest
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 42
+                      snowflake:
+                        type: string
+                        example: '481398158916845568'
+                      user_name:
+                        type: string
+                        example: bigfootmcfly
+                      global_name:
+                        type: string
+                        example: 'BigFoot McFly'
+                      locale:
+                        type: string
+                        example: hu_HU
+                      timezone:
+                        type: string
+                        example: Europe/Budapest
+        422:
+          description: 'Unprocessable Content'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errors:
+                    snowflake:
+                      - 'The snowflake has already been taken.'
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      snowflake:
+                        type: array
+                        example:
+                          - 'The snowflake has already been taken.'
+                        items:
+                          type: string
+      tags:
+        - 'Discord User Managment'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                snowflake:
+                  type: string
+                  description: 'A valid [snowflake](#snowflake).'
+                  example: '481398158916845568'
+                  nullable: false
+                user_name:
+                  type: string
+                  description: 'The user_name registered in Discord.'
+                  example: bigfootmcfly
+                  nullable: true
+                global_name:
+                  type: string
+                  description: 'The global_name registered in Discord.'
+                  example: 'BigFoot McFly'
+                  nullable: true
+                avatar:
+                  type: string
+                  description: 'The avatar url registered in Discord.'
+                  example: null
+                  nullable: true
+                locale:
+                  type: string
+                  description: 'A valid [locale](#locale).'
+                  example: hu_HU
+                  nullable: true
+                timezone:
+                  type: string
+                  description: 'A valid [time zone](#timezone).'
+                  example: Europe/Budapest
+                  nullable: true
+              required:
+                - snowflake
+  '/api/v1/discord-users/{id}':
+    get:
+      summary: 'Get the specified DiscordUser record.'
+      operationId: getTheSpecifiedDiscordUserRecord
+      description: 'Returns the specified [DiscordUser](#discorduser) record.'
+      parameters: []
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 42
+                    snowflake: '481398158916845568'
+                    user_name: bigfootmcfly
+                    global_name: 'BigFoot McFly'
+                    locale: hu_HU
+                    timezone: Europe/Budapest
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 42
+                      snowflake:
+                        type: string
+                        example: '481398158916845568'
+                      user_name:
+                        type: string
+                        example: bigfootmcfly
+                      global_name:
+                        type: string
+                        example: 'BigFoot McFly'
+                      locale:
+                        type: string
+                        example: hu_HU
+                      timezone:
+                        type: string
+                        example: Europe/Budapest
+      tags:
+        - 'Discord User Managment'
+    put:
+      summary: 'Update the specified DiscordUser record.'
+      operationId: updateTheSpecifiedDiscordUserRecord
+      description: 'Updates the specified [DiscordUser](#discorduser) with the supplied values.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 42
+                    snowflake: '481398158916845568'
+                    user_name: bigfootmcfly
+                    global_name: 'BigFoot McFly'
+                    locale: hu_HU
+                    timezone: Europe/London
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 42
+                      snowflake:
+                        type: string
+                        example: '481398158916845568'
+                      user_name:
+                        type: string
+                        example: bigfootmcfly
+                      global_name:
+                        type: string
+                        example: 'BigFoot McFly'
+                      locale:
+                        type: string
+                        example: hu_HU
+                      timezone:
+                        type: string
+                        example: Europe/London
+        422:
+          description: 'Unprocessable Content'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  errors:
+                    snowflake:
+                      - 'Invalid snowflake'
+                properties:
+                  errors:
+                    type: object
+                    properties:
+                      snowflake:
+                        type: array
+                        example:
+                          - 'Invalid snowflake'
+                        items:
+                          type: string
+      tags:
+        - 'Discord User Managment'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                snowflake:
+                  type: string
+                  description: 'The snowflake of the [DiscordUser](#discorduser) to update.'
+                  example: '481398158916845568'
+                  nullable: false
+                user_name:
+                  type: string
+                  description: 'The user_name registered in Discord.'
+                  example: null
+                  nullable: true
+                global_name:
+                  type: string
+                  description: 'The global_name registered in Discord.'
+                  example: null
+                  nullable: true
+                avatar:
+                  type: string
+                  description: 'The avatar url registered in Discord.'
+                  example: null
+                  nullable: true
+                locale:
+                  type: string
+                  description: 'A valid locale. <a href="https://github.com/Nerdtrix/language-list/blob/main/language-list-json.json" target="_blank">Locale list (json)</a>'
+                  example: null
+                  nullable: true
+                timezone:
+                  type: string
+                  description: 'A valid [time zone](#timezone).'
+                  example: Europe/London
+                  nullable: true
+              required:
+                - snowflake
+    delete:
+      summary: 'Remove the specified DiscordUser record.'
+      operationId: removeTheSpecifiedDiscordUserRecord
+      description: 'Removes the specified [DiscordUser](#discorduser) record **with** all the [Remainder](#remainder) records belonging to it.'
+      parameters: []
+      responses:
+        204:
+          description: ''
+      tags:
+        - 'Discord User Managment'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                snowflake:
+                  type: string
+                  description: 'The snowflake of the [DiscordUser](#discorduser) to delete.'
+                  example: '481398158916845568'
+                  nullable: false
+              required:
+                - snowflake
+    parameters:
+      -
+        in: path
+        name: id
+        description: '[DiscordUser](#discorduser) ID.'
+        example: 42
+        required: true
+        schema:
+          type: integer
+  '/api/v1/discord-users/{discord_user_id}/remainders':
+    get:
+      summary: 'List of Remainder records.'
+      operationId: listOfRemainderRecords
+      description: 'Paginated list of [Remainder](#remainder) records belonging to the specified [DiscordUser](#discorduser).'
+      parameters:
+        -
+          in: query
+          name: page_size
+          description: 'Items per page. Defaults to 100.'
+          example: 25
+          required: false
+          schema:
+            type: integer
+            description: 'Items per page. Defaults to 100.'
+            example: 25
+            nullable: false
+        -
+          in: query
+          name: page
+          description: 'Page to query. Defaults to 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page to query. Defaults to 1.'
+            example: 1
+            nullable: false
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 38
+                      discord_user_id: 42
+                      channel_id: null
+                      due_at: 1736259300
+                      message: 'Update todo list'
+                      status: new
+                      error: null
+                    -
+                      id: 121
+                      discord_user_id: 42
+                      channel_id: null
+                      due_at: 1736259480
+                      message: 'Water plants'
+                      status: new
+                      error: null
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    per_page: 25
+                    to: 2
+                    total: 2
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 38
+                        discord_user_id: 42
+                        channel_id: null
+                        due_at: 1736259300
+                        message: 'Update todo list'
+                        status: new
+                        error: null
+                      -
+                        id: 121
+                        discord_user_id: 42
+                        channel_id: null
+                        due_at: 1736259480
+                        message: 'Water plants'
+                        status: new
+                        error: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 38
+                        discord_user_id:
+                          type: integer
+                          example: 42
+                        channel_id:
+                          type: string
+                          example: null
+                        due_at:
+                          type: integer
+                          example: 1736259300
+                        message:
+                          type: string
+                          example: 'Update todo list'
+                        status:
+                          type: string
+                          example: new
+                        error:
+                          type: string
+                          example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      per_page:
+                        type: integer
+                        example: 25
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 2
+      tags:
+        - 'Remainder Managment'
+    post:
+      summary: 'Create a new Remainder record.'
+      operationId: createANewRemainderRecord
+      description: 'Creates a new [Remainder](#remainder) record with the provided parameters.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 18568
+                    discord_user_id: 42
+                    channel_id: null
+                    due_at: 1732550400
+                    message: 'Check maintance results!'
+                    status: new
+                    error: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 18568
+                      discord_user_id:
+                        type: integer
+                        example: 42
+                      channel_id:
+                        type: string
+                        example: null
+                      due_at:
+                        type: integer
+                        example: 1732550400
+                      message:
+                        type: string
+                        example: 'Check maintance results!'
+                      status:
+                        type: string
+                        example: new
+                      error:
+                        type: string
+                        example: null
+      tags:
+        - 'Remainder Managment'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                due_at:
+                  type: string
+                  description: 'The "Due at" time ([timestamp](#timestamp)) of the remainder'
+                  example: '1732550400'
+                  nullable: false
+                message:
+                  type: string
+                  description: 'The message to send to the discord user.'
+                  example: 'Check maintance results!'
+                  nullable: false
+                channel_id:
+                  type: string
+                  description: 'The [snowflake](#snowflake) of the channel to send the remainder to.'
+                  example: null
+                  nullable: true
+              required:
+                - due_at
+                - message
+    parameters:
+      -
+        in: path
+        name: discord_user_id
+        description: '[DiscordUser](#discorduser) ID.'
+        example: 42
+        required: true
+        schema:
+          type: integer
+  '/api/v1/discord-users/{discord_user_id}/remainders/{id}':
+    put:
+      summary: 'Update the specified Remainder record.'
+      operationId: updateTheSpecifiedRemainderRecord
+      description: 'Updates the specified [Remainder](#remainder) record with the provided parameters.'
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 18568
+                    discord_user_id: 42
+                    channel_id: null
+                    due_at: 1732550400
+                    message: 'Check maintance results!'
+                    status: failed
+                    error: 'Unknow user'
+                  changes:
+                    status:
+                      old: new
+                      new: failed
+                    error:
+                      old: null
+                      new: 'Unknow user'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 18568
+                      discord_user_id:
+                        type: integer
+                        example: 42
+                      channel_id:
+                        type: string
+                        example: null
+                      due_at:
+                        type: integer
+                        example: 1732550400
+                      message:
+                        type: string
+                        example: 'Check maintance results!'
+                      status:
+                        type: string
+                        example: failed
+                      error:
+                        type: string
+                        example: 'Unknow user'
+                  changes:
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          old:
+                            type: string
+                            example: new
+                          new:
+                            type: string
+                            example: failed
+                      error:
+                        type: object
+                        properties:
+                          old:
+                            type: string
+                            example: null
+                          new:
+                            type: string
+                            example: 'Unknow user'
+      tags:
+        - 'Remainder Managment'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                due_at:
+                  type: string
+                  description: 'The "Due at" time ([timestamp](#timestamp)) of the remainder.'
+                  example: null
+                  nullable: true
+                message:
+                  type: string
+                  description: 'The message to send to the discord user.'
+                  example: null
+                  nullable: false
+                channel_id:
+                  type: string
+                  description: 'The [snowflake](#snowflake) of the channel to send the remainder to.'
+                  example: null
+                  nullable: true
+                status:
+                  type: string
+                  description: "Status of the [Remainder](#remainder).\n\nFor possible values see: [RemainderStatus](#remainderstatus)"
+                  example: failed
+                  nullable: true
+                error:
+                  type: string
+                  description: 'Error description in case of failure.'
+                  example: 'Unknow user'
+                  nullable: true
+    delete:
+      summary: 'Remove the specified Remainder record.'
+      operationId: removeTheSpecifiedRemainderRecord
+      description: 'Removes the specified [Remainder](#remainder) record with the provided parameters.'
+      parameters: []
+      responses:
+        204:
+          description: ''
+      tags:
+        - 'Remainder Managment'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                snowflake:
+                  type: string
+                  description: 'The [snowflake](#snowflake) of the DiscordUser of the Remainder to delete.'
+                  example: '481398158916845568'
+                  nullable: false
+              required:
+                - snowflake
+    parameters:
+      -
+        in: path
+        name: discord_user_id
+        description: '[DiscordUser](#discorduser) ID.'
+        example: 42
+        required: true
+        schema:
+          type: integer
+      -
+        in: path
+        name: id
+        description: '[Remainder](#remainder) ID.'
+        example: 18568
+        required: true
+        schema:
+          type: integer
+  '/api/v1/remainder-by-due-at/{due_at}':
+    get:
+      summary: 'Returns all the "actual" reaminders for the given second.'
+      operationId: returnsAllTheactualReamindersForTheGivenSecond
+      description: ''
+      parameters:
+        -
+          in: query
+          name: page_size
+          description: 'Items per page. Defaults to 100.'
+          example: 25
+          required: false
+          schema:
+            type: integer
+            description: 'Items per page. Defaults to 100.'
+            example: 25
+            nullable: false
+        -
+          in: query
+          name: page
+          description: 'Page to query. Defaults to 1.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page to query. Defaults to 1.'
+            example: 1
+            nullable: false
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 56
+                      discord_user_id: 42
+                      channel_id: null
+                      due_at: 1735685999
+                      message: 'Update conatiner registry!'
+                      status: new
+                      error: null
+                    -
+                      id: 192
+                      discord_user_id: 47
+                      channel_id: null
+                      due_at: 1735685999
+                      message: 'Get some milk'
+                      status: new
+                      error: null
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    per_page: 100
+                    to: 2
+                    total: 2
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 56
+                        discord_user_id: 42
+                        channel_id: null
+                        due_at: 1735685999
+                        message: 'Update conatiner registry!'
+                        status: new
+                        error: null
+                      -
+                        id: 192
+                        discord_user_id: 47
+                        channel_id: null
+                        due_at: 1735685999
+                        message: 'Get some milk'
+                        status: new
+                        error: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 56
+                        discord_user_id:
+                          type: integer
+                          example: 42
+                        channel_id:
+                          type: string
+                          example: null
+                        due_at:
+                          type: integer
+                          example: 1735685999
+                        message:
+                          type: string
+                          example: 'Update conatiner registry!'
+                        status:
+                          type: string
+                          example: new
+                        error:
+                          type: string
+                          example: null
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      per_page:
+                        type: integer
+                        example: 100
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 2
+      tags:
+        - 'Remainder by DueAt Managment'
+    parameters:
+      -
+        in: path
+        name: due_at
+        description: 'The time ([timestamp](#timestamp)) of the requested remainders.'
+        example: 1735685999
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: 'Discord User By snowflake Managment'
+    description: "\nAPIs to manage DiscordUser records.\n\nThese endpoints can be used to identify/create DiscordUser records identified by the [snowflake](#snowflake) that already exists in the discord app."
+  -
+    name: 'Discord User Managment'
+    description: "\nAPIs to manage [DiscordUser](#discorduser) records.\n\nThese endpoints can be used to Query/Update/Delete [DiscordUser](#discorduser) records."
+  -
+    name: 'Remainder Managment'
+    description: "\nAPIs to manage Remainders records.\n\nThese endpoints can be used to Query/Update/Delete [Remainder](#remainder) records."
+  -
+    name: 'Remainder by DueAt Managment'
+    description: "\nAPI to get Remainder records.\n\nThis endpoint can be used to Query the actual [Remainder](#remainder) records."
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: 'You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.'
+security:
+  -
+    default: []
