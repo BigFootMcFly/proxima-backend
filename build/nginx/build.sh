@@ -1,13 +1,19 @@
 #!/bin/bash
 
-echo This is a sample build script, if the workflow cannot be used.
-echo Please customize the repository address/name for your own.
-
-
+# ---------------------------------------------------------------------------
+# setting constants
 PACKAGE_REPOSITORY=proxima.goliath.hu/proxima/backend
 BUILD_TAG=nginx
 UID=$(id -u)
 GID=$(id -g)
+
+# ---------------------------------------------------------------------------
+
+clear
+
+echo This is a sample build script, if the workflow cannot be used.
+echo Please customize the repository address/name for your own.
+echo
 
 # ---------------------------------------------------------------------------
 echo Building "${BUILD_TAG}" package ..
@@ -52,7 +58,6 @@ docker build . \
 echo Changing back to build directory...
 
 popd > /dev/null
-
 
 # ---------------------------------------------------------------------------
 echo Done.

@@ -1,0 +1,11 @@
+---
+services:
+    backend:
+      image: proxima.goliath.hu/proxima/backend:latest
+      container_name: backend
+      ports:
+        - "9000:9000"
+      volumes:
+        - "./volumes/backend/env/.env.config:/app/Backend/.env.config"
+        - "./volumes/backend/database/:/app/Backend/database/sqlite/"
+      restart: unless-stopped
