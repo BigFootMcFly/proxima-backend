@@ -110,13 +110,13 @@ docker run \
 
 #### 6.2 Running with docker compose
 
-#### 6.2.1 Create docker compose file `docker-compose.yaml`:
+#### 6.2.1 Create docker compose file [`docker-compose.yaml`](res/docker-compose.yaml):
 
 ```yaml
 ---
 services:
     backend:
-      image: git.magrathea.hu/proxima/backend:latest
+      image: proxima.goliath.hu/proxima/backend:latest
       container_name: backend
       ports:
         - "9000:9000"
