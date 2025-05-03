@@ -74,7 +74,7 @@ RUN mkdir -p ${WORKDIR} ${PHP_FPM_LISTEN_DIR} ${LOG_DIR}
 # change ownership of folders to the user
 RUN chown -R ${USER_ID}:${GROUP_ID} ${WORKDIR} ${PHP_FPM_LISTEN_DIR} ${LOG_DIR}
 
-# set tue workdir
+# set the workdir
 WORKDIR ${WORKDIR}
 
 # copy the application
@@ -104,5 +104,5 @@ VOLUME [ "/app/Backend/database/sqlite" ]
 # define the exposed port
 EXPOSE 9000
 
-# start the app
-CMD ["/usr/bin/supervisord"]
+# setting entrypoint
+ENTRYPOINT ["/usr/bin/supervisord"]

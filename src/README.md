@@ -1,5 +1,5 @@
-![Docker build](https://proxima.goliath.hu/proxima/backend/actions/workflows/testing.yaml/badge.svg)
 ![Docker build](https://proxima.goliath.hu/proxima/backend/actions/workflows/latest.yaml/badge.svg)
+![Docker build](https://proxima.goliath.hu/proxima/backend/actions/workflows/testing.yaml/badge.svg)
 
 ![Proxima Discord bot](../res/logo.svg)
 
