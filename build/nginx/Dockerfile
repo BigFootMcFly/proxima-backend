@@ -104,6 +104,5 @@ VOLUME [ "/app/Backend/database/sqlite" ]
 # define the exposed port
 EXPOSE 9000
 
-# setting the command
-# CMD ["/usr/bin/supervisord"]
+# setting entrypoint
 ENTRYPOINT ["/usr/bin/supervisord"]
