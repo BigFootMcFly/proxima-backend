@@ -31,7 +31,7 @@ class Remainder extends Model
 
     protected $casts = [
         'status' => RemainderStatus::class,
-        'due_at' => 'datetime',
+        'due_at' => 'datetime:Y-m-d H:i:s',
     ];
 
     /**
