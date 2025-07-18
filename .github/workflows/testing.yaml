@@ -12,6 +12,7 @@ on:
       - v**
     branches:
       - 'dev'
+  workflow_dispatch:
 
 jobs:
     build_docker_image:
