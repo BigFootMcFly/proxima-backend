@@ -21,8 +21,8 @@ class DiscordUserSeeder extends Seeder
 
         // Creating Discord Users
         $discordUsers = DiscordUser::factory()->times($discordUserCount)->make(
-            //TODO? maybe add sum random creation times here ex.:->subSeconds(rand(0, 30 * 24 * 60 * 60))
-            ['created_at' => Carbon::now()]
+            ['created_at' => Carbon::now()
+                ->subSeconds(rand(0, 30 * 24 * 60 * 60))] // randomize to the last 30 days
         );
 
         // Saving Discord Users
@@ -46,6 +46,7 @@ class DiscordUserSeeder extends Seeder
                     'discord_user_id' => $discordUser->id,
                     'created_at' => Carbon::now(),
                 ]);
+
             // add remainder to buffer
             $remainders = $remainders->concat($discordUserRemainders);
             if ($remainders->count() >= $chunkSize) {

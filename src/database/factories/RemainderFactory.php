@@ -25,10 +25,12 @@ class RemainderFactory extends Factory
             false => null
         };
 
+
         return [
             'discord_user_id' => DiscordUser::factory(),
             'channel_id' => $channel_id,
-            'due_at' => $this->faker->dateTimeBetween('now', '+1 year'),
+            //NOTE: Trend does not play well with the default DateTime format (ex.: 2025-05-12T08:18:51.000000Z)
+            'due_at' => $this->faker->dateTimeBetween('now', '+1 year')->format('Y-m-d H:i:s'),
             'message' => $this->faker->realText(32),
             'status' => RemainderStatus::NEW->value,
         ];
